@@ -32,6 +32,7 @@ const tikTokCommand = async (client, message, args) => {
         })
         .catch((err) => {
             console.log(color('[ERROR TIKTOK]', 'red'), err.message)
+            return client.reply(from, 'Ocorreu algum erro ao tentar baixar o vídeo :(', id)
         })
 }
 
