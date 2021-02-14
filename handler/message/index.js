@@ -13,13 +13,9 @@ const moment = require('moment-timezone')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt-br')
 const Jimp = require('jimp')
 const {
-    downloader
-} = require('../../lib')
-const {
     msgFilter,
     color,
-    processTime,
-    isUrl
+    processTime
 } = require('../../utils')
 const instaCommand = require('./commands/instagram')
 const twitterCommand = require('./commands/twitter')
@@ -29,7 +25,6 @@ const wikiCommand = require('./commands/wiki')
 const criarMemeCommand = require('./commands/criarMeme')
 const traduzirCommand = require('./commands/traduzir')
 const rndMemeCommand = require('./commands/rndMeme')
-const sticker = require('./commands/sticker')
 
 const {
     stickerHandler
@@ -41,9 +36,6 @@ const {
 const {
     lembreteCommand
 } = require('./commands/lembrete')
-const {
-    acordarCommand
-} = require('./commands/acordafdp')
 const {
     gerarKey,
     listarKeys,
