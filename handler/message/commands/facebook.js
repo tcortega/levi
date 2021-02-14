@@ -23,6 +23,9 @@ module.exports = facebookCommand = async (client = new Client(), message, args) 
 
     axios.post('https://www.getfvid.com/pt/downloader', `url=${url}`)
         .then(async (res) => {
+            if (res.data.includes('Uh-Oh! Este vídeo pode ser privado e não público. por favor, verifique'))
+                return await client.reply(from, 'O vídeo aparenta ser privado, não vou conseguir baixar :(', id)
+
             const $ = cheerio.load(res.data)
             const videoUrl = $('.btns-download p a').attr('href')
 
@@ -32,6 +35,6 @@ module.exports = facebookCommand = async (client = new Client(), message, args) 
             return await client.reply(from, 'O vídeo aparenta ser privado, não vou conseguir baixar :(', id)
         })
         .catch(err => {
-            console.log(color('[ERROR FB]', 'red'), err)
+            console.log(color('[ERROR FB]', 'red'), err.message)
         })
 }
