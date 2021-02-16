@@ -72,7 +72,7 @@ const stickerHandler = async (client = new Client(), message, args) => {
             const _mimetype = isQuotedImage ? quotedMsg.mimetype : mimetype
             const mediaData = await decryptMedia(encryptMedia, uaOverride)
             let nobg = false
-            if (args.length > 1) {
+            if (args.length > 0) {
                 if (args[0].includes('bg')) {
                     nobg = true
                 }
