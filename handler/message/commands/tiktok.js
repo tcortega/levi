@@ -2,7 +2,9 @@ const {
     isUrl,
     color
 } = require('../../../utils')
-const TikTokScraper = require("tiktok-scraper");
+const {
+    getVideoMeta
+} = require("tiktok-scraper");
 
 const fullLinkRegex = /https:\/\/www\.tiktok\.com\/@.*\/video\/\d{18,}.*/;
 const shortLinkRegex = /https??:\/\/(v[m|t]\.)??tiktok\.com\/(\w|\W|\d)+/;
@@ -18,7 +20,7 @@ const tikTokCommand = async (client, message, args) => {
     if (!isUrl(url) && !fullLinkRegex.test(url) & !shortLinkRegex(url)) return client.reply(from, 'Desculpe, o link que você enviou é inválido.', id)
     await client.reply(from, '_Pegando dados..._', id)
 
-    TikTokScraper.getVideoMeta(url, {
+    getVideoMeta(url, {
             noWaterMark: true,
             hdVideo: true,
         })

@@ -7,6 +7,7 @@ const {
 } = require('../../../utils')
 const fs = require('fs')
 const YouTube = require("discord-youtube-api")
+const axios = require('axios').default;
 const apiKeys = JSON.parse(fs.readFileSync('./././settings/apiKeys.json'))
 
 const youtube = new YouTube(apiKeys.ytb)
@@ -34,11 +35,15 @@ const ytbMp3Command = async (client, message) => {
             url = url.id
         } catch (err) {
             if (err) {
-                console.log(err)
+                console.log(color('[ERROR YTBMP3]', 'red'), err)
                 return client.reply(from, 'Não encontrei o vídeo informado :(', id)
             }
         }
     }
+
+    // Treating shorts links
+    if (url.includes('shorts/'))
+        url = url.replace('shorts/', 'watch?v=')
 
     await client.reply(from, `_Pegando dados..._`, id)
     downloader.youtube(url).then((audioMP3) => {
@@ -46,11 +51,11 @@ const ytbMp3Command = async (client, message) => {
             client.getMyLastMessage(from).then(lastMsg => client.reply(from, audioMP3.title, lastMsg.id))
             fs.unlink(`./././temp-folder/${audioMP3.filename}.mp3`, (err) => {
                 if (err)
-                    console.log(color('[ERROR]', 'red'), err)
+                    console.log(color('[ERROR YTBMP3]', 'red'), err)
             })
         })
     }).catch((err) => {
-        console.log(color('[ERROR]', 'red'), err)
+        console.log(color('[ERROR YTBMP3]', 'red'), err)
         client.reply(from, err, id)
     })
 }
@@ -69,11 +74,15 @@ const ytbMp4Command = async (client, message, args) => {
             url = url.id
         } catch (err) {
             if (err) {
-                console.log(err)
+                console.log(color('[ERROR YTBV]', 'red'), err)
                 return client.reply(from, 'Não encontrei o vídeo informado :(', id)
             }
         }
     }
+
+    // Treating shorts links
+    if (url.includes('shorts/'))
+        url = url.replace('shorts/', 'watch?v=')
 
     await client.reply(from, `_Pegando dados..._`, id)
     downloader.youtubeMp4(url)
@@ -81,7 +90,7 @@ const ytbMp4Command = async (client, message, args) => {
             return await client.sendFileFromUrl(from, res.url, 'videoyt.mp4', res.title, id)
         })
         .catch((err) => {
-            console.log(color('[ERROR]', 'red'), err)
+            console.log(color('[ERROR YTBV]', 'red'), err)
             client.reply(from, 'Houve um erro na sua solicitação :(', id)
         })
 }
