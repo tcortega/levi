@@ -1,6 +1,6 @@
 <div align="center">
  
-# Whatsapp Bot - sticker creator
+# Levi - A WhatsApp bot
 [![CodeFactor](https://www.codefactor.io/repository/github/tcortega/levi/badge)](https://www.codefactor.io/repository/github/tcortega/levi)
 <details>
  <summary>🥟 Help me!</summary>
