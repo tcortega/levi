@@ -16,7 +16,7 @@
 
 - Cleaning a lot of the code, it needs a lot of optimization.
 - Adding more features
-- More refactoring
+- Update menu command
 
 ---
 

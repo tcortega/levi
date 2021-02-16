@@ -71,7 +71,11 @@ const {
 const {
     createPoll,
     voteCommand,
-    listPoll
+    listPoll,
+    endPoll,
+    reactivatePoll,
+    pollStats,
+    resetPolls
 } = require('./commands/pollHandler')
 
 const {
@@ -368,10 +372,41 @@ module.exports = msgHandler = async (client = new Client(), message) => {
                 await createPoll(client, message, args)
                 break
             }
+            case 'listpoll':
+            case 'polls':
+            case 'votacoes': {
+                await listPoll(client, message)
+                break
+            }
+            case 'vervotacao': {
+                await pollStats(client, message, args)
+                break
+            }
             case 'votar':
             case 'vote':
             case 'voto': {
                 await voteCommand(client, message, args)
+                break
+            }
+            case 'finalizar':
+            case 'final': {
+                await endPoll(client, message, args)
+                break
+            }
+            case 'reativ':
+            case 'reativar': {
+                await reactivatePoll(client, message, args)
+                break
+            }
+            case 'limparvot':
+            case 'delvote':
+            case 'delvotacoes':
+            case 'limparvotacoes': {
+                if (isGroupAdmins) {
+                    await resetPolls(client, message)
+                } else {
+                    await client.reply(from, 'Você precisa ser um administrador do grupo para excluir todas votações', id)
+                }
                 break
             }
 
