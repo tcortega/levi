@@ -90,8 +90,11 @@ const ytbMp4Command = async (client, message, args) => {
             return await client.sendFileFromUrl(from, res.url, 'videoyt.mp4', res.title, id)
         })
         .catch((err) => {
+            if (err.includes('tempo limite'))
+                return client.reply(from, err, id)
+
             console.log(color('[ERROR YTBV]', 'red'), err)
-            client.reply(from, 'Houve um erro na sua solicitação :(', id)
+            return client.reply(from, 'Houve um erro na sua solicitação :(', id)
         })
 }
 
