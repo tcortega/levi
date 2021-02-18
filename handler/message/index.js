@@ -599,44 +599,6 @@ module.exports = msgHandler = async (client = new Client(), message) => {
                     await client.sendText(numero, args.join(' '))
                 }
                 break
-                // Group Commands (group admin only)
-                // case 'kick':
-                //     if (!isGroupMsg) return client.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup! [Group Only]', id)
-                //     if (!isGroupAdmins) return client.reply(from, 'Gagal, perintah ini hanya dapat digunakan oleh admin grup! [Admin Group Only]', id)
-                //     if (!isBotGroupAdmins) return client.reply(from, 'Gagal, silahkan tambahkan bot sebagai admin grup! [Bot Not Admin]', id)
-                //     if (mentionedJidList.length === 0) return client.reply(from, 'O formato da mensagem está errado, verifique o correto no menu!', id)
-                //     if (mentionedJidList[0] === botNumber) return await client.reply(from, 'O formato da mensagem está errado, verifique o correto no menu!', id)
-                //     await client.sendTextWithMentions(from, `Request diterima, mengeluarkan:\n${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')}`)
-                //     for (let i = 0; i < mentionedJidList.length; i++) {
-                //         if (groupAdmins.includes(mentionedJidList[i])) return await client.sendText(from, 'Gagal, kamu tidak bisa mengeluarkan admin grup.')
-                //         await client.removeParticipant(groupId, mentionedJidList[i])
-                //     }
-                //     break
-                // case 'promote':
-                //     if (!isGroupMsg) return await client.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup! [Group Only]', id)
-                //     if (!isGroupAdmins) return await client.reply(from, 'Gagal, perintah ini hanya dapat digunakan oleh admin grup! [Admin Group Only]', id)
-                //     if (!isBotGroupAdmins) return await client.reply(from, 'Gagal, silahkan tambahkan bot sebagai admin grup! [Bot not Admin]', id)
-                //     if (mentionedJidList.length != 1) return client.reply(from, 'Maaf, format pesan salah silahkan periksa menu. [Wrong Format, Only 1 user]', id)
-                //     if (groupAdmins.includes(mentionedJidList[0])) return await client.reply(from, 'Maaf, user tersebut sudah menjadi admin. [Bot is Admin]', id)
-                //     if (mentionedJidList[0] === botNumber) return await client.reply(from, 'O formato da mensagem está errado, verifique o correto no menu!', id)
-                //     await client.promoteParticipant(groupId, mentionedJidList[0])
-                //     await client.sendTextWithMentions(from, `Request diterima, menambahkan @${mentionedJidList[0].replace('@c.us', '')} sebagai admin.`)
-                //     break
-                // case 'demote':
-                //     if (!isGroupMsg) return client.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup! [Group Only]', id)
-                //     if (!isGroupAdmins) return client.reply(from, 'Gagal, perintah ini hanya dapat digunakan oleh admin grup! [Admin Group Only]', id)
-                //     if (!isBotGroupAdmins) return client.reply(from, 'Gagal, silahkan tambahkan bot sebagai admin grup! [Bot not Admin]', id)
-                //     if (mentionedJidList.length !== 1) return client.reply(from, 'Maaf, format pesan salah silahkan periksa menu. [Wrong Format, Only 1 user]', id)
-                //     if (!groupAdmins.includes(mentionedJidList[0])) return await client.reply(from, 'Maaf, user tersebut tidak menjadi admin. [user not Admin]', id)
-                //     if (mentionedJidList[0] === botNumber) return await client.reply(from, 'O formato da mensagem está errado, verifique o correto no menu!', id)
-                //     await client.demoteParticipant(groupId, mentionedJidList[0])
-                //     await client.sendTextWithMentions(from, `Request diterima, menghapus jabatan @${mentionedJidList[0].replace('@c.us', '')}.`)
-                //     break
-                // case 'bye':
-                //     if (!isGroupMsg) return client.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup! [Group Only]', id)
-                //     if (!isGroupAdmins) return client.reply(from, 'Gagal, perintah ini hanya dapat digunakan oleh admin grup! [Admin Group Only]', id)
-                //     client.sendText(from, 'Good bye... ( ⇀‸↼‶ )').then(() => client.leaveGroup(groupId))
-                //     break
             case 'del':
                 if (!isGroupAdmins && !isDev) return client.reply(from, 'Você precisa ser administrador do grupo para usar essa função.', id)
                 if (!quotedMsg) return client.reply(from, 'Você deve marcar a mensagem que deseja deletar usando o comando #del', id)
