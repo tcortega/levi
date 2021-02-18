@@ -1,4 +1,8 @@
 ﻿const {
+    rmdirSync,
+    mkdirSync
+} = require('fs');
+const {
     create,
     Client
 } = require('@open-wa/wa-automate')
@@ -17,6 +21,12 @@ const start = (client = new Client()) => {
     client.getHostNumber().then(botnumber => {
         console.log('[CLIENT] Número:', color(botnumber + '@c.us', 'yellow'))
     })
+
+    // Cleaning temp folder everytime the bot starts
+    rmdirSync('./temp-folder', {
+        recursive: true
+    })
+    mkdirSync('./temp-folder')
 
     reminderHandler(client)
 
